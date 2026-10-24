@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Разбор блога Софьи</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;600;700;800&display=swap">
+<style>
+:root{
+  --bg:#F6F6F1; --bg2:#E9EBE0; --card:#FFFFFF; --ink:#1E2420; --ink2:#5A665E; --line:#D9DECF;
+  --coral:#5E7D5A; --coral-soft:#E4EDDE; --rose:#D7A6B3; --peach:#C9D7BF; --on-coral:#fff;
+  --sun1:#F6E6EA; --sun2:#D7A6B3; --sun3:#3E5A3C; --shadow:0 18px 40px -26px rgba(50,80,50,.3);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#111411; --bg2:#161A16; --card:#1C221D; --ink:#EBEFE8; --ink2:#AEBAAF; --line:#2E382F;
+  --coral:#9CC293; --coral-soft:#24331F; --rose:#E3B7C2; --peach:#3E5638; --on-coral:#111411;
+  --sun1:#EED1D8; --sun2:#7FA176; --sun3:#203320; --shadow:0 18px 40px -26px rgba(0,0,0,.7); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111411; --bg2:#161A16; --card:#1C221D; --ink:#EBEFE8; --ink2:#AEBAAF; --line:#2E382F;
+  --coral:#9CC293; --coral-soft:#24331F; --rose:#E3B7C2; --peach:#3E5638; --on-coral:#111411;
+  --sun1:#EED1D8; --sun2:#7FA176; --sun3:#203320; --shadow:0 18px 40px -26px rgba(0,0,0,.7); color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Manrope',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:980px;margin:0 auto;padding-inline:20px;padding-block:0 80px}
+h1,h2,h3{font-family:'Lora',Georgia,serif;font-weight:600;letter-spacing:-.01em;text-wrap:balance;margin:0}
+em{font-family:'Lora',Georgia,serif;font-style:italic;font-weight:500;color:var(--coral)}
+.label{font-size:12px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--coral)}
+.hero{position:relative;padding-block:72px 48px;display:grid;grid-template-columns:1.3fr 1fr;gap:32px;align-items:center}
+.hero h1{font-size:clamp(40px,7vw,72px);line-height:1.04;margin-top:14px}
+.hero p{color:var(--ink2);font-size:18px;max-width:46ch;margin:20px 0 0}
+.sun{aspect-ratio:1;max-width:100%;width:340px;justify-self:center;border-radius:50%;background:radial-gradient(circle at 50% 62%,var(--sun1) 0%,var(--sun2) 48%,var(--sun3) 78%,transparent 79%);position:relative}
+.sun::after{content:"подарок от команды Маши ✦";position:absolute;left:-10px;bottom:6%;background:var(--card);color:var(--coral);font-family:'Lora',serif;font-style:italic;font-size:17px;padding:12px 18px;border-radius:6px;box-shadow:var(--shadow);transform:rotate(-5deg)}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);margin-inline:-20px;padding:10px 20px;overflow-x:auto;white-space:nowrap;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav a{display:inline-block;color:var(--ink2);text-decoration:none;font-size:14px;font-weight:600;padding:6px 12px;border-radius:999px}
+nav a:hover{background:var(--coral-soft);color:var(--coral)}
+section{padding-top:64px;scroll-margin-top:60px}
+section>h2{font-size:clamp(28px,4.4vw,42px);line-height:1.15;margin-top:10px}
+section>.lead{color:var(--ink2);max-width:62ch;margin:14px 0 0}
+.grid{display:grid;gap:16px;margin-top:28px}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:24px;box-shadow:var(--shadow);min-width:0}
+.card h3{font-size:22px;margin-top:14px;line-height:1.25}
+.card p{margin:8px 0 0;color:var(--ink2);font-size:16px}
+.card.hot{background:var(--coral);border-color:var(--coral)}
+.card.hot h3,.card.hot p,.card.hot .pin,.card.hot li{color:var(--on-coral)}
+.card.hot .label,.card.hot .big{color:var(--on-coral)}
+.card.hot .ic{background:color-mix(in srgb,var(--on-coral) 22%,transparent);color:var(--on-coral)}
+.ic{width:52px;height:52px;border-radius:16px;background:var(--coral-soft);color:var(--coral);display:flex;align-items:center;justify-content:center}
+.ic svg{width:28px;height:28px}
+.big{font-family:'Lora',serif;font-size:44px;line-height:1;color:var(--coral);font-variant-numeric:tabular-nums}
+.note{margin-top:22px;padding:18px 22px;border-left:3px solid var(--coral);background:var(--bg2);border-radius:0 14px 14px 0;color:var(--ink2)}
+.pin{font-size:16px;line-height:1.7;white-space:pre-line;color:var(--ink)}
+.ideas ol{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:12px;counter-reset:i}
+.ideas li{counter-increment:i;display:grid;grid-template-columns:34px 1fr;gap:8px;font-size:15.5px;line-height:1.45}
+.ideas li::before{content:counter(i,decimal-leading-zero);font-family:'Lora',serif;font-weight:600;color:var(--coral)}
+.check{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:12px}
+.check li{display:flex;gap:12px;align-items:flex-start;cursor:pointer;user-select:none;font-size:15.5px;line-height:1.45}
+.check li::before{content:"";flex:none;width:20px;height:20px;margin-top:2px;border-radius:6px;border:2px solid var(--coral)}
+.check li b{display:block;color:var(--ink)}
+.check li span{color:var(--ink2)}
+.check li.done{opacity:.55}
+.check li.done b{text-decoration:line-through}
+.check li.done::before{background:var(--coral);box-shadow:inset 0 0 0 3px var(--card)}
+.flow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:28px}
+.step{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;min-width:0}
+.step b{font-family:'Lora',serif;font-size:20px;color:var(--coral)}
+.step p{margin:6px 0 0;color:var(--ink2);font-size:15px}
+.final{margin-top:72px;padding:40px 32px;border-radius:28px;background:linear-gradient(140deg,var(--coral-soft),var(--bg2));border:1px solid var(--line)}
+.final h2{font-size:clamp(28px,4.4vw,40px)}
+.final p{max-width:60ch;color:var(--ink2)}
+.small{font-size:14px;color:var(--ink2)}
+@media (max-width:760px){
+  .hero{grid-template-columns:1fr;padding-top:40px}.sun{width:220px}
+  .g2,.g3,.flow{grid-template-columns:1fr}
+}
+.why{display:grid;grid-template-columns:300px 1fr;gap:24px;margin-top:28px;align-items:start}
+.why img{width:100%;border-radius:22px;box-shadow:var(--shadow);display:block}
+.steps{display:grid;gap:16px;min-width:0}
+.covers{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:28px}
+.cov{aspect-ratio:9/16;max-width:100%;border-radius:20px;padding:18px;display:flex;flex-direction:column;justify-content:space-between;color:#fff;box-shadow:var(--shadow)}
+.cov span{font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(15px,2.2vw,20px);line-height:1.15;text-transform:uppercase}
+.cov b{font-family:'Lora',serif;font-size:clamp(28px,4vw,40px);align-self:flex-end}
+.c1{background:linear-gradient(160deg,#E0452B,#8E1E10)}.c2{background:linear-gradient(160deg,#E85D8C,#93264F)}.c3{background:linear-gradient(160deg,#2F8F83,#1C5750)}.c4{background:linear-gradient(160deg,#3D6FD8,#1D3A85)}
+@media (max-width:760px){.why{grid-template-columns:1fr}.why img{max-width:300px}.covers{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.bar{height:18px;border-radius:999px;background:var(--bg2);overflow:hidden}
+.fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--rose),var(--coral))}
+.barlabels{display:flex;justify-content:space-between;margin-top:10px;font-size:15px;color:var(--ink2)}
+.barlabels b{color:var(--ink);font-family:'Lora',serif;font-size:22px}
+.check[data-static] li{cursor:default}
+.flow .step b{font-size:18px}
+</style>
+</head><body>
+<div class="wrap">
+  <header class="hero">
+    <div>
+      <div class="label">разбор блога · лично для тебя</div>
+      <h1>Софья, фраза, на которой держится блог, <em>у тебя уже есть</em></h1>
+      <p>«Тело в движении и тишина внутри». Это редкость: у многих преподавателей йоги нет ни одной своей мысли в шапке. Разбираем, как построить на этой фразе блог, который приводит людей на практику.</p>
+    </div>
+    <div class="sun" aria-hidden="true"></div>
+  </header>
+
+  <nav aria-label="Разделы">
+    <a href="#good">Что уже есть</a><a href="#grow">Что мешает</a><a href="#core">Позиционирование</a><a href="#rubrics">Рубрики</a><a href="#hook">Как снимать</a><a href="#funnel">Путь до практики</a><a href="#money">Деньги</a><a href="#profile">Профиль</a><a href="#plan">План на 2 недели</a>
+  </nav>
+
+  <section id="good">
+    <div class="label">что у тебя уже есть</div>
+    <h2>Мягкость, которой <em>сейчас всем не хватает</em></h2>
+    <div class="grid g2">
+      <div class="card hot"><div class="ic" data-i="sun"></div><h3>Смысловой стержень</h3><p>«Тело в движении и тишина внутри» передаёт суть всего, что ты делаешь. Это готовое ядро для любого ролика и продукта.</p></div>
+      <div class="card"><div class="ic" data-i="heart"></div><h3>Ниша с постоянным спросом</h3><p>Йога и медитации онлайн нужны тем, кто устал, тревожится и не успевает в зал. Таких людей с каждым годом больше.</p></div>
+      <div class="card"><div class="ic" data-i="chat"></div><h3>Живой характер</h3><p>«Стихи читаю и болтаю». Ты не сухой эксперт, а человек, к которому хочется прийти. Это и есть личный бренд.</p></div>
+      <div class="card"><div class="ic" data-i="pin"></div><h3>Призыв уже есть</h3><p>«Приходи на практику». Направление к продукту заложено, осталось выстроить к нему дорогу.</p></div>
+    </div>
+  </section>
+
+  <section id="grow">
+    <div class="label">что мешает</div>
+    <h2>Почему тёплый блог <em>может не расти</em></h2>
+    <div class="grid g2">
+      <div class="card hot"><div class="ic" data-i="eye"></div><h3>Непонятно, для кого</h3><p>Йога для всех значит ни для кого. Человек должен с первой секунды понять: это для меня, я как раз такая.</p></div>
+      <div class="card"><div class="ic" data-i="box"></div><h3>Риск «обо всём»</h3><p>Йога, медитации, стихи, разговоры. Если без баланса, те, кто пришёл за практикой, уходят.</p></div>
+      <div class="card"><div class="ic" data-i="cal"></div><h3>Нужны короткие практики</h3><p>Растят такие блоги ролики, которые можно повторить прямо сейчас: 1–5 минут, и человеку стало легче.</p></div>
+      <div class="card"><div class="ic" data-i="send"></div><h3>Нет дороги до практики</h3><p>«Приходи на практику» есть в шапке, но нет промежуточного шага, где человек пробует тебя бесплатно.</p></div>
+    </div>
+  </section>
+
+  <section id="core">
+    <div class="label">позиционирование</div>
+    <h2>Три пути, <em>и они правда разные</em></h2>
+    <div class="grid g3">
+      <div class="card hot"><div class="label">советуем</div><h3>«Йога для тех, кто устал от гонки»</h3><p>Короткие мягкие практики для уставших, тревожных и вечно занятых. Понятная боль, огромная аудитория, и легко приводить людей на онлайн-практики.</p></div>
+      <div class="card"><div class="label">путь 2</div><h3>«Медитации голосом»</h3><p>Твой голос как главный продукт: медитации на сон, от тревоги, на утро. Очень преданная аудитория, продукты можно продавать в записи.</p></div>
+      <div class="card"><div class="label">путь 3</div><h3>«Йога и поэзия»</h3><p>Атмосферный блог, где практика и стихи вместе. Очень свой, но аудитория уже, и людей на практику приводить медленнее.</p></div>
+    </div>
+    <div class="note">Как бы сделали мы: ядро «Йога для тех, кто устал от гонки», медитации голосом как второй продукт, а стихи как твоя подпись в конце роликов. Так ты и полезная, и не похожа на других.</div>
+  </section>
+
+  <section id="rubrics">
+    <div class="label">рубрики</div>
+    <h2>Четыре рубрики <em>в балансе</em></h2>
+    <div class="grid g2">
+      <div class="card ideas"><div class="label">рубрика 1 · охват</div><h3>«5 минут для себя»</h3><p>Короткая практика, которую повторяют прямо сейчас.</p><ol>
+        <li>Практика, если весь день сидела за компьютером</li>
+        <li>3 движения перед сном, чтобы быстрее уснуть</li>
+        <li>Что сделать утром вместо телефона</li>
+      </ol></div>
+      <div class="card ideas"><div class="label">рубрика 2 · доверие</div><h3>«Когда…»</h3><p>Состояние и что с ним делать.</p><ol>
+        <li>Когда тревожно и не можешь остановиться</li>
+        <li>Когда нет сил даже встать с кровати</li>
+        <li>Когда в голове шум и мысли по кругу</li>
+      </ol></div>
+      <div class="card ideas"><div class="label">рубрика 3 · подпись</div><h3>«Тишина»</h3><p>Минута медитации голосом или стихотворение на красивом кадре.</p><ol>
+        <li>Минута, чтобы выдохнуть посреди дня</li>
+        <li>Стихотворение, которое я читаю себе, когда тяжело</li>
+        <li>Медитация на благодарность</li>
+      </ol></div>
+      <div class="card ideas"><div class="label">рубрика 4 · продажа</div><h3>«Приходи на практику»</h3><p>Как проходят практики и что говорят ученики.</p><ol>
+        <li>Как проходит онлайн-практика со мной</li>
+        <li>Что сказала ученица после месяца практик</li>
+        <li>Почему не нужно быть гибкой, чтобы начать</li>
+      </ol></div>
+    </div>
+    <div class="note">Баланс примерно такой: из четырёх роликов два про практику и состояния, один «тишина», один приглашение.</div>
+  </section>
+
+  <section id="hook">
+    <div class="label">как снимать</div>
+    <h2>Мягко, но <em>цепляюще</em></h2>
+    <div class="grid g3">
+      <div class="card"><div class="label">первая секунда</div><h3>Назови состояние</h3><p>«Если ты весь день сидела за компьютером, сделай это прямо сейчас». Человек узнаёт себя и остаётся.</p></div>
+      <div class="card"><div class="label">середина</div><h3>Повторяй со мной</h3><p>Простые движения с подсказками голосом и текстом. Так ролик сохраняют, чтобы вернуться.</p></div>
+      <div class="card hot"><div class="label">конец</div><h3>Тёплый призыв</h3><p>«Сохрани, чтобы сделать вечером» или «полная практика в телеграме».</p></div>
+    </div>
+  </section>
+
+  <section id="funnel">
+    <div class="label">путь до практики</div>
+    <h2>Как человек из ленты <em>приходит к тебе на практику</em></h2>
+    <div class="flow">
+      <div class="step"><b>Короткий ролик</b><p>5 минут практики, человеку стало легче</p></div>
+      <div class="step"><b>Бесплатная практика</b><p>Медитация или практика на 15 минут в телеграме</p></div>
+      <div class="step"><b>Онлайн-практики</b><p>Регулярные занятия или клуб по подписке</p></div>
+    </div>
+    <div class="note">Бесплатная практика это главный шаг. Человек пробует тебя, и решение прийти на занятие даётся намного легче.</div>
+  </section>
+
+  <section id="money">
+    <div class="label">деньги</div>
+    <h2>Как блог <em>превращается в доход</em></h2>
+    <div class="grid g3">
+      <div class="card hot"><h3>Онлайн-клуб</h3><p>Регулярные практики по подписке. Стабильный доход каждый месяц.</p></div>
+      <div class="card"><h3>Медитации в записи</h3><p>Сборник медитаций на сон, от тревоги, на утро. Записала один раз, продаётся постоянно.</p></div>
+      <div class="card"><h3>Индивидуальные практики</h3><p>Для тех, кому нужен личный подход. Дороже и ценнее.</p></div>
+    </div>
+  </section>
+
+  <section id="profile">
+    <div class="label">профиль</div>
+    <h2>Шапка, после которой <em>понятно, что это для меня</em></h2>
+    <div class="grid g2">
+      <div class="card"><div class="label">вариант 1</div><p class="pin">Софья | йога и медитации онлайн 🪷
+Для тех, кто устал от гонки
+Тело в движении и тишина внутри
+Бесплатная практика ↓</p></div>
+      <div class="card"><div class="label">вариант 2</div><p class="pin">Мягкая йога и медитации голосом 🌿
+Возвращаю в тело, когда в голове шум
+Иногда читаю стихи
+Приходи на практику ↓</p></div>
+    </div>
+  </section>
+
+  <section id="plan">
+    <div class="label">что делать</div>
+    <h2>Две недели <em>по шагам</em></h2>
+    <p class="lead">Нажимай на пункт, когда сделала. Ритм: 3–4 ролика в неделю.</p>
+    <div class="grid g2">
+      <div class="card"><div class="label">неделя 1 · собрать</div><ul class="check">
+        <li><div><b>Новая шапка</b><span>для кого ты и бесплатная практика</span></div></li>
+        <li><div><b>Бесплатная практика</b><span>медитация или 15 минут йоги в телеграме</span></div></li>
+        <li><div><b>«5 минут для себя» #1</b><span>после дня за компьютером</span></div></li>
+        <li><div><b>«Когда…» #1</b><span>когда тревожно</span></div></li>
+        <li><div><b>«Тишина» #1</b><span>минута медитации голосом</span></div></li>
+      </ul></div>
+      <div class="card"><div class="label">неделя 2 · ритм</div><ul class="check">
+        <li><div><b>«5 минут для себя» #2</b><span>перед сном</span></div></li>
+        <li><div><b>«Приходи на практику» #1</b><span>как проходит занятие</span></div></li>
+        <li><div><b>Актуальные</b><span>практики, отзывы, обо мне</span></div></li>
+        <li><div><b>Если что-то залетело</b><span>2–3 похожих ролика в ближайшие дни</span></div></li>
+        <li><div><b>Посмотреть итоги</b><span>сколько людей забрали бесплатную практику</span></div></li>
+      </ul></div>
+    </div>
+  </section>
+
+  <div class="final">
+    <div class="label">напоследок</div>
+    <h2>Тишина внутри у тебя уже есть. <em>Осталось, чтобы её нашли</em></h2>
+    <p>Тёплый посыл, своя фраза, живой характер. Но пока нет понятного «для кого» и дороги до практики, люди будут проходить мимо. Как собрать это в блог, который приводит людей на занятия, разберём на созвоне.</p>
+  </div>
+</div>
+
+<script>
+const I={
+send:'<path d="M42 6L4 21l14 5 4 14 7-10 10 8z"/><path d="M18 26l24-20"/>',
+box:'<path d="M6 15l18-9 18 9v18l-18 9-18-9z"/><path d="M6 15l18 9 18-9M24 24v18"/>',
+cal:'<rect x="6" y="10" width="36" height="31" rx="4"/><line x1="6" y1="19" x2="42" y2="19"/><line x1="16" y1="5" x2="16" y2="13"/><line x1="32" y1="5" x2="32" y2="13"/>',
+smile:'<circle cx="24" cy="24" r="18"/><path d="M16 28q8 7 16 0"/><circle cx="18" cy="19" r="1.5"/><circle cx="30" cy="19" r="1.5"/>',
+camera:'<rect x="5" y="14" width="38" height="26" rx="5"/><circle cx="24" cy="27" r="7"/><path d="M17 14l3-5h8l3 5"/>',
+sun:'<circle cx="24" cy="24" r="8"/><path d="M24 4v6M24 38v6M4 24h6M38 24h6M10 10l4 4M34 34l4 4M38 10l-4 4M14 34l-4 4"/>',
+eye:'<path d="M3 24c7-10 14-14 21-14s14 4 21 14c-7 10-14 14-21 14S10 34 3 24z"/><circle cx="24" cy="24" r="6"/>',
+repeat:'<path d="M8 20a14 14 0 0 1 26-6l4-4v11H27l5-4a10 10 0 0 0-19 4"/><path d="M40 28a14 14 0 0 1-26 6l-4 4V27h11l-5 4a10 10 0 0 0 19-4"/>',
+chat:'<path d="M9 9h30a4 4 0 0 1 4 4v16a4 4 0 0 1-4 4H22l-9 7v-7H9a4 4 0 0 1-4-4V13a4 4 0 0 1 4-4z"/>',
+pen:'<path d="M31 7l10 10-23 23H8V30z"/><line x1="26" y1="12" x2="36" y2="22"/>',
+chart:'<path d="M7 41V7"/><path d="M7 41h34"/><path d="M13 33l9-10 7 6 12-14"/>',
+heart:'<path d="M24 40C10 30 6 22 10 15c4-6 11-5 14 1 3-6 10-7 14-1 4 7 0 15-14 25z"/>',
+pin:'<path d="M24 43s14-13 14-24a14 14 0 0 0-28 0c0 11 14 24 14 24z"/><circle cx="24" cy="19" r="5"/>'};
+document.querySelectorAll('.ic[data-i]').forEach(e=>{e.innerHTML='<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">'+I[e.dataset.i]+'</svg>'});
+document.querySelectorAll('#plan .check li').forEach(li=>li.addEventListener('click',()=>li.classList.toggle('done')));
+</script>
+</body></html>
